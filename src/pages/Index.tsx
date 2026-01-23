@@ -3,9 +3,12 @@ import logo from "@/assets/logo.jpg";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
+import team4 from "@/assets/team-4.jpg";
+import team5 from "@/assets/team-5.jpg";
+import team6 from "@/assets/team-6.jpg";
+import heroTeam from "@/assets/hero-team.jpg";
 import vehicle from "@/assets/vehicle.jpg";
 import { Button } from "@/components/ui/button";
-
 const Header = () => (
   <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
     <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -36,7 +39,7 @@ const Hero = () => (
   <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-dark" />
     <div className="absolute inset-0 opacity-20">
-      <img src={vehicle} alt="Security Vehicle" className="w-full h-full object-cover" />
+      <img src={heroTeam} alt="MyBrada Security Team" className="w-full h-full object-cover" />
     </div>
     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
     
@@ -206,14 +209,21 @@ const Gallery = () => (
         <div className="group overflow-hidden rounded-lg">
           <img 
             src={team1} 
-            alt="Security inspection" 
+            alt="Security team officers" 
             className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
           />
         </div>
         <div className="group overflow-hidden rounded-lg">
           <img 
             src={team3} 
-            alt="Security team" 
+            alt="Armed response team" 
+            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        </div>
+        <div className="group overflow-hidden rounded-lg">
+          <img 
+            src={team4} 
+            alt="Security officers on patrol" 
             className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
           />
         </div>
@@ -221,6 +231,20 @@ const Gallery = () => (
           <img 
             src={vehicle} 
             alt="Armed response vehicle" 
+            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        </div>
+        <div className="group overflow-hidden rounded-lg">
+          <img 
+            src={team5} 
+            alt="Security operations" 
+            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        </div>
+        <div className="group overflow-hidden rounded-lg">
+          <img 
+            src={team6} 
+            alt="Professional security team" 
             className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
           />
         </div>
