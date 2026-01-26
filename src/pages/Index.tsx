@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Shield, Users, Building, Eye, Clock, Heart } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 import logo from "@/assets/logo.jpg";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
@@ -256,7 +257,7 @@ const Gallery = () => (
 const Contact = () => (
   <section id="contact" className="py-24 bg-background">
     <div className="container mx-auto px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16 animate-fade-up">
           <p className="text-primary font-heading uppercase tracking-widest text-sm mb-4">Get In Touch</p>
           <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
@@ -267,45 +268,51 @@ const Contact = () => (
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          <a 
-            href="tel:0333421076"
-            className="bg-card p-8 rounded-lg border border-border hover:border-primary transition-all duration-300 text-center group"
-          >
-            <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-gold group-hover:scale-110 transition-transform">
-              <Phone className="h-8 w-8 text-primary-foreground" />
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <a 
+              href="tel:0333421076"
+              className="bg-card p-6 rounded-lg border border-border hover:border-primary transition-all duration-300 flex items-center gap-4 group"
+            >
+              <div className="w-14 h-14 bg-gradient-gold rounded-full flex items-center justify-center shadow-gold group-hover:scale-110 transition-transform flex-shrink-0">
+                <Phone className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-foreground mb-1">Call Us</h3>
+                <p className="text-primary font-semibold">033 342 1076</p>
+              </div>
+            </a>
+            
+            <a 
+              href="mailto:info@mybradamail.co.za"
+              className="bg-card p-6 rounded-lg border border-border hover:border-primary transition-all duration-300 flex items-center gap-4 group"
+            >
+              <div className="w-14 h-14 bg-gradient-gold rounded-full flex items-center justify-center shadow-gold group-hover:scale-110 transition-transform flex-shrink-0">
+                <Mail className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-foreground mb-1">Email Us</h3>
+                <p className="text-primary font-semibold text-sm">info@mybradamail.co.za</p>
+              </div>
+            </a>
+            
+            <div className="bg-card p-6 rounded-lg border border-border hover:border-primary transition-all duration-300 flex items-center gap-4 group">
+              <div className="w-14 h-14 bg-gradient-gold rounded-full flex items-center justify-center shadow-gold group-hover:scale-110 transition-transform flex-shrink-0">
+                <MapPin className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-foreground mb-1">Visit Us</h3>
+                <p className="text-muted-foreground text-sm">30 Timber Street, Pietermaritzburg, South Africa, 3201</p>
+              </div>
             </div>
-            <h3 className="font-heading font-bold text-foreground mb-2">Call Us</h3>
-            <p className="text-primary font-semibold">033 342 1076</p>
-          </a>
-          
-          <a 
-            href="mailto:info@mybradamail.co.za"
-            className="bg-card p-8 rounded-lg border border-border hover:border-primary transition-all duration-300 text-center group"
-          >
-            <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-gold group-hover:scale-110 transition-transform">
-              <Mail className="h-8 w-8 text-primary-foreground" />
-            </div>
-            <h3 className="font-heading font-bold text-foreground mb-2">Email Us</h3>
-            <p className="text-primary font-semibold text-sm">info@mybradamail.co.za</p>
-          </a>
-          
-          <div className="bg-card p-8 rounded-lg border border-border hover:border-primary transition-all duration-300 text-center group">
-            <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-gold group-hover:scale-110 transition-transform">
-              <MapPin className="h-8 w-8 text-primary-foreground" />
-            </div>
-            <h3 className="font-heading font-bold text-foreground mb-2">Visit Us</h3>
-            <p className="text-muted-foreground text-sm">30 Timber Street, Pietermaritzburg, South Africa, 3201</p>
           </div>
-        </div>
-        
-        <div className="mt-12 text-center">
-          <a href="tel:0333421076">
-            <Button variant="hero" size="xl">
-              <Phone className="h-5 w-5" />
-              Get Protected Today
-            </Button>
-          </a>
+
+          {/* Contact Form */}
+          <div className="bg-card p-8 rounded-lg border border-border">
+            <h3 className="font-heading font-bold text-xl text-foreground mb-6">Send Us a Message</h3>
+            <ContactForm />
+          </div>
         </div>
       </div>
     </div>
