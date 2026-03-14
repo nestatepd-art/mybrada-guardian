@@ -285,7 +285,7 @@ const Contact = () => (
             </a>
             
             <a 
-              href="mailto:info@mybradamail.co.za"
+              href="mailto:info@mybrada.org.za"
               className="bg-card p-6 rounded-lg border border-border hover:border-primary transition-all duration-300 flex items-center gap-4 group"
             >
               <div className="w-14 h-14 bg-gradient-gold rounded-full flex items-center justify-center shadow-gold group-hover:scale-110 transition-transform flex-shrink-0">
@@ -293,7 +293,7 @@ const Contact = () => (
               </div>
               <div>
                 <h3 className="font-heading font-bold text-foreground mb-1">Email Us</h3>
-                <p className="text-primary font-semibold text-sm">info@mybradamail.co.za</p>
+                <p className="text-primary font-semibold text-sm">info@mybrada.org.za</p>
               </div>
             </a>
             

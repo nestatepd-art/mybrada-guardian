@@ -63,7 +63,7 @@ const ContactForm = () => {
     const body = encodeURIComponent(
       `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\n\nMessage:\n${data.message}`
     );
-    const mailtoLink = `mailto:info@mybradamail.co.za?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:info@mybrada.org.za?subject=${subject}&body=${body}`;
 
     // Open email client
     window.location.href = mailtoLink;
