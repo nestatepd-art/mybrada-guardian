@@ -293,7 +293,7 @@ const Contact = () => (
               </div>
               <div>
                 <h3 className="font-heading font-bold text-foreground mb-1">Email Us</h3>
-                <p className="text-primary font-semibold text-sm">info@mybradamail.co.za</p>
+                <p className="text-primary font-semibold text-sm">info@mybrada.org.za</p>
               </div>
             </a>
             
