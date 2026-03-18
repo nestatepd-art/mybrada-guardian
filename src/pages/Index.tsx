@@ -1,15 +1,16 @@
 import { Phone, Mail, MapPin, Shield, Users, Building, Eye, Clock, Heart } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
-import logo from "@/assets/logo.jpg";
-import team1 from "@/assets/team-1.jpg";
-import team2 from "@/assets/team-2.jpg";
-import team3 from "@/assets/team-3.jpg";
-import team4 from "@/assets/team-4.jpg";
-import team5 from "@/assets/team-5.jpg";
-import team6 from "@/assets/team-6.jpg";
-import heroTeam from "@/assets/hero-team.jpg";
-import vehicle from "@/assets/vehicle.jpg";
 import { Button } from "@/components/ui/button";
+
+const logo = "/images/logo.jpg";
+const team1 = "/images/team-1.jpg";
+const team2 = "/images/team-2.jpg";
+const team3 = "/images/team-3.jpg";
+const team4 = "/images/team-4.jpg";
+const team5 = "/images/team-5.jpg";
+const team6 = "/images/team-6.jpg";
+const heroTeam = "/images/hero-team.jpg";
+const vehicle = "/images/vehicle.jpg";
 const Header = () => (
   <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
     <div className="container mx-auto px-4 py-4 flex items-center justify-between">
