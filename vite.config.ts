@@ -13,6 +13,11 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  build: {
+    // Embed every imported image into the JS bundle so cPanel uploads
+    // only need index.html + assets/*.js/css — no separate image files.
+    assetsInlineLimit: 100_000_000,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
