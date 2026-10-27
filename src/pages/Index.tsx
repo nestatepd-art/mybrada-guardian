@@ -1,3 +1,4 @@
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Phone, Mail, MapPin, Shield, Users, Building, Eye, Clock, Heart } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
@@ -5,15 +6,12 @@ import { Button } from "@/components/ui/button";
 // Images are imported so Vite embeds them inside the main JS bundle
 // (see build.assetsInlineLimit in vite.config.ts). This means the site
 // never depends on a separate images folder being uploaded to the host.
-import logo from "@/assets/logo.jpg";
-import team1 from "@/assets/team-1.jpg";
-import team2 from "@/assets/team-2.jpg";
-import team3 from "@/assets/team-3.jpg";
-import team4 from "@/assets/team-4.jpg";
-import team5 from "@/assets/team-5.jpg";
-import team6 from "@/assets/team-6.jpg";
-import heroTeam from "@/assets/hero-team.jpg";
-import vehicle from "@/assets/vehicle.jpg";
+import logo from "@/assets/logo.webp";
+import team1 from "@/assets/team-1.webp";
+import team2 from "@/assets/team-2.webp";
+import heroTeam from "@/assets/hero-team.webp";
+const PhotoGallery = lazy(() => import("@/components/PhotoGallery"));
+
 const Header = () => (
   <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
     <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -44,7 +42,7 @@ const Hero = () => (
   <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-dark" />
     <div className="absolute inset-0 opacity-20">
-      <img src={heroTeam} alt="MyBrada Security Team" className="w-full h-full object-cover" />
+      <img src={heroTeam} alt="MyBrada Security Team" fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
     </div>
     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
     
@@ -181,12 +179,14 @@ const About = () => (
           <div className="grid grid-cols-2 gap-4">
             <img 
               src={team1} 
-              alt="Security officer conducting inspection" 
+              alt="Security officer conducting inspection"
+              loading="lazy" decoding="async" 
               className="rounded-lg shadow-card w-full h-64 object-cover"
             />
             <img 
               src={team2} 
-              alt="Site security inspection" 
+              alt="Site security inspection"
+              loading="lazy" decoding="async" 
               className="rounded-lg shadow-card w-full h-64 object-cover mt-8"
             />
           </div>
@@ -200,63 +200,45 @@ const About = () => (
   </section>
 );
 
-const Gallery = () => (
-  <section id="gallery" className="py-24 bg-card">
-    <div className="container mx-auto px-4">
-      <div className="text-center mb-16 animate-fade-up">
-        <p className="text-primary font-heading uppercase tracking-widest text-sm mb-4">Our Team in Action</p>
-        <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
-          Professional <span className="text-gradient-gold">Excellence</span>
-        </h2>
+const Gallery = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setReady(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        setReady(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: "600px" });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  const placeholder = <div aria-hidden="true" className="grid md:grid-cols-3 gap-6">
+    {Array.from({ length: 6 }, (_, index) => <div key={index} className="h-80 bg-secondary rounded-lg" />)}
+  </div>;
+
+  return (
+    <section ref={sectionRef} id="gallery" className="py-24 bg-card">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 animate-fade-up">
+          <p className="text-primary font-heading uppercase tracking-widest text-sm mb-4">Our Team in Action</p>
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+            Professional <span className="text-gradient-gold">Excellence</span>
+          </h2>
+        </div>
+        {ready ? <Suspense fallback={placeholder}><PhotoGallery /></Suspense> : placeholder}
       </div>
-      
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="group overflow-hidden rounded-lg">
-          <img 
-            src={team1} 
-            alt="Security team officers" 
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
-        <div className="group overflow-hidden rounded-lg">
-          <img 
-            src={team3} 
-            alt="Armed response team" 
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
-        <div className="group overflow-hidden rounded-lg">
-          <img 
-            src={team4} 
-            alt="Security officers on patrol" 
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
-        <div className="group overflow-hidden rounded-lg">
-          <img 
-            src={vehicle} 
-            alt="Armed response vehicle" 
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
-        <div className="group overflow-hidden rounded-lg">
-          <img 
-            src={team5} 
-            alt="Security operations" 
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
-        <div className="group overflow-hidden rounded-lg">
-          <img 
-            src={team6} 
-            alt="Professional security team" 
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Contact = () => (
   <section id="contact" className="py-24 bg-background">
